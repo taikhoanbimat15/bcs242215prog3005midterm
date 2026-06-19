@@ -32,9 +32,3 @@ kết quả mong đợi:
 - có database `MID_BCS242215`
 - có 3 bảng `EventCategories_BCS242215`, `Events_BCS242215`, `EventImages_BCS242215`
 - dữ liệu mẫu ban đầu: 3 loại sự kiện, 5 sự kiện, 5 ảnh
-
-Kết quả mong đợi:
-
-- Có database `MID_BCS242215`
-- Có 3 bảng `EventCategories_BCS242215`, `Events_BCS242215`, `EventImages_BCS242215`
-- Dữ liệu mẫu ban đầu: 3 loại sự kiện, 5 sự kiện, 5 ảnh
