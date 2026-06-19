@@ -1,0 +1,55 @@
+@model Event_BCS242215
+
+@{
+    ViewData["Title"] = "Sửa sự kiện";
+}
+
+<h1 class="h3 mb-3">Sửa sự kiện</h1>
+
+<form asp-action="Edit" method="post" class="row g-3">
+    <input type="hidden" asp-for="Id" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="col-md-6">
+        <label asp-for="Name" class="form-label">Tên sự kiện</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="col-md-3">
+        <label asp-for="Price" class="form-label">Giá</label>
+        <input asp-for="Price" class="form-control" type="number" min="0" step="1000" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="col-md-3">
+        <label asp-for="EventCategoryId" class="form-label">Loại sự kiện</label>
+        <select asp-for="EventCategoryId" class="form-select" asp-items="ViewBag.EventCategoryId"></select>
+        <span asp-validation-for="EventCategoryId" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="StartDate" class="form-label">Bắt đầu</label>
+        <input asp-for="StartDate" asp-format="{0:yyyy-MM-ddTHH:mm}" class="form-control" type="datetime-local" />
+        <span asp-validation-for="StartDate" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="EndDate" class="form-label">Kết thúc</label>
+        <input asp-for="EndDate" asp-format="{0:yyyy-MM-ddTHH:mm}" class="form-control" type="datetime-local" />
+        <span asp-validation-for="EndDate" class="text-danger"></span>
+    </div>
+    <div class="col-md-12">
+        <label asp-for="Location" class="form-label">Địa điểm</label>
+        <input asp-for="Location" class="form-control" />
+        <span asp-validation-for="Location" class="text-danger"></span>
+    </div>
+    <div class="col-md-12">
+        <label asp-for="Description" class="form-label">Mô tả</label>
+        <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="col-12 d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Lưu</button>
+        <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-outline-secondary">Hủy</a>
+    </div>
+</form>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

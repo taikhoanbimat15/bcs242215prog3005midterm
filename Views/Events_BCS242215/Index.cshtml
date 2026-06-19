@@ -1,0 +1,118 @@
+@model EventManagement_BCS242215.ViewModels.EventListViewModel_BCS242215
+
+@{
+    ViewData["Title"] = "Sự kiện";
+    var now = DateTime.Now;
+}
+
+@functions {
+    private static string BadgeClass(string status)
+    {
+        return status switch
+        {
+            "Sắp diễn ra" => "text-bg-primary",
+            "Đang diễn ra" => "text-bg-success",
+            _ => "text-bg-secondary"
+        };
+    }
+}
+
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+    <div>
+        <h1 class="h3 mb-1">Quản lý sự kiện</h1>
+        <div class="text-muted">MSSV BCS242215 - Database MID_BCS242215</div>
+    </div>
+    <a asp-action="Create" class="btn btn-primary">Tạo sự kiện</a>
+</div>
+
+<form asp-action="Index" method="get" class="row g-3 align-items-end mb-4">
+    <div class="col-md-3">
+        <label class="form-label" for="searchTerm">Tên hoặc địa điểm</label>
+        <input class="form-control" id="searchTerm" name="searchTerm" value="@Model.SearchTerm" />
+    </div>
+    <div class="col-md-2">
+        <label class="form-label" for="categoryId">Loại sự kiện</label>
+        <select class="form-select" id="categoryId" name="categoryId">
+            <option value="">Tất cả</option>
+            @foreach (var category in Model.Categories)
+            {
+                <option value="@category.Value" selected="@category.Selected">@category.Text</option>
+            }
+        </select>
+    </div>
+    <div class="col-md-2">
+        <label class="form-label" for="startDateFrom">Từ ngày</label>
+        <input class="form-control" type="date" id="startDateFrom" name="startDateFrom" value="@(Model.StartDateFrom?.ToString("yyyy-MM-dd"))" />
+    </div>
+    <div class="col-md-2">
+        <label class="form-label" for="startDateTo">Đến ngày</label>
+        <input class="form-control" type="date" id="startDateTo" name="startDateTo" value="@(Model.StartDateTo?.ToString("yyyy-MM-dd"))" />
+    </div>
+    <div class="col-md-2">
+        <label class="form-label" for="sortOrder">Sắp xếp</label>
+        <select class="form-select" id="sortOrder" name="sortOrder">
+            <option value="date" selected="@(Model.SortOrder == "date")">Ngày bắt đầu gần nhất</option>
+            <option value="price_asc" selected="@(Model.SortOrder == "price_asc")">Giá tăng dần</option>
+            <option value="price_desc" selected="@(Model.SortOrder == "price_desc")">Giá giảm dần</option>
+        </select>
+    </div>
+    <div class="col-md-1 d-grid">
+        <button type="submit" class="btn btn-dark">Lọc</button>
+    </div>
+</form>
+
+@if (!Model.Events.Any())
+{
+    <div class="alert alert-warning">Tìm kiếm không có kết quả.</div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-hover align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Ảnh</th>
+                    <th>Tên sự kiện</th>
+                    <th>Loại</th>
+                    <th>Địa điểm</th>
+                    <th>Giá</th>
+                    <th>Bắt đầu</th>
+                    <th>Kết thúc</th>
+                    <th>Trạng thái</th>
+                    <th class="text-end">Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var eventItem in Model.Events)
+                {
+                    var thumbnail = eventItem.EventImages.FirstOrDefault(image => image.IsThumbnail) ?? eventItem.EventImages.FirstOrDefault();
+                    var status = eventItem.GetStatus(now);
+                    <tr>
+                        <td class="event-thumb-cell">
+                            @if (thumbnail is not null)
+                            {
+                                <img src="@thumbnail.ImageUrl" class="event-thumb" alt="@eventItem.Name" />
+                            }
+                            else
+                            {
+                                <span class="text-muted">Chưa có ảnh</span>
+                            }
+                        </td>
+                        <td class="fw-semibold">@eventItem.Name</td>
+                        <td>@eventItem.EventCategory?.Name</td>
+                        <td>@eventItem.Location</td>
+                        <td>@eventItem.Price.ToString("N0")</td>
+                        <td>@eventItem.StartDate.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>@eventItem.EndDate.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td><span class="badge @BadgeClass(status)">@status</span></td>
+                        <td class="text-end text-nowrap">
+                            <a asp-action="Details" asp-route-id="@eventItem.Id" class="btn btn-sm btn-outline-primary">Chi tiết</a>
+                            <a asp-action="Edit" asp-route-id="@eventItem.Id" class="btn btn-sm btn-outline-secondary">Sửa</a>
+                            <a asp-action="Delete" asp-route-id="@eventItem.Id" class="btn btn-sm btn-outline-danger">Xóa</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

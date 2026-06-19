@@ -1,0 +1,12 @@
+@model string
+
+@{
+    ViewData["Title"] = "Không tìm thấy";
+}
+
+<div class="alert alert-danger">
+    <h1 class="h4">Không tìm thấy dữ liệu</h1>
+    <p class="mb-0">@Model</p>
+</div>
+
+<a asp-controller="Events_BCS242215" asp-action="Index" class="btn btn-outline-primary">Về danh sách sự kiện</a>

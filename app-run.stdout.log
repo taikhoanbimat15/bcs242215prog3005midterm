@@ -1,0 +1,627 @@
+Using launch settings from C:\Users\MSI TRUE GAMING\Documents\idkifiwillfinishthisontimeornot\EventManagement_BCS242215\Properties\launchSettings.json...
+Building...
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (13ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (105ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      
+      IF EXISTS
+          (SELECT *
+           FROM [sys].[objects] o
+           WHERE [o].[type] = 'U'
+           AND [o].[is_ms_shipped] = 0
+           AND NOT EXISTS (SELECT *
+               FROM [sys].[extended_properties] AS [ep]
+               WHERE [ep].[major_id] = [o].[object_id]
+                   AND [ep].[minor_id] = 0
+                   AND [ep].[class] = 1
+                   AND [ep].[name] = N'microsoft_database_tools_support'
+          )
+      )
+      SELECT 1 ELSE SELECT 0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT CASE
+          WHEN EXISTS (
+              SELECT 1
+              FROM [EventCategories_BCS242215] AS [e]) THEN CAST(1 AS bit)
+          ELSE CAST(0 AS bit)
+      END
+info: Microsoft.Hosting.Lifetime[14]
+      Now listening on: http://localhost:5088
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: C:\Users\MSI TRUE GAMING\Documents\idkifiwillfinishthisontimeornot\EventManagement_BCS242215
+warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]
+      Failed to determine the https port for redirect.
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[Name], [e0].[Id], [e0].[Description], [e0].[EndDate], [e0].[EventCategoryId], [e0].[Location], [e0].[Name], [e0].[Price], [e0].[StartDate]
+      FROM [EventCategories_BCS242215] AS [e]
+      LEFT JOIN [Events_BCS242215] AS [e0] ON [e].[Id] = [e0].[EventCategoryId]
+      ORDER BY [e].[Name], [e].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id], [e0].[Description], [e0].[Name], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM [Events_BCS242215] AS [e]
+      INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [e].[Id] = [e1].[EventId]
+      ORDER BY [e].[StartDate], [e].[Id], [e0].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[Name]
+      FROM [EventCategories_BCS242215] AS [e]
+      ORDER BY [e].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (10ms) [Parameters=[@__keyword_0_contains='?' (Size = 150), @__keyword_0_contains_1='?' (Size = 200)], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id], [e0].[Description], [e0].[Name], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM [Events_BCS242215] AS [e]
+      INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [e].[Id] = [e1].[EventId]
+      WHERE [e].[Name] LIKE @__keyword_0_contains ESCAPE N'\' OR [e].[Location] LIKE @__keyword_0_contains_1 ESCAPE N'\'
+      ORDER BY [e].[Price] DESC, [e].[StartDate], [e].[Id], [e0].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (15ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[Description], [t].[EndDate], [t].[EventCategoryId], [t].[Location], [t].[Name], [t].[Price], [t].[StartDate], [t].[Id0], [t].[Description0], [t].[Name0], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM (
+          SELECT TOP(1) [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id] AS [Id0], [e0].[Description] AS [Description0], [e0].[Name] AS [Name0]
+          FROM [Events_BCS242215] AS [e]
+          INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+          WHERE [e].[Id] = @__id_0
+      ) AS [t]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [t].[Id] = [e1].[EventId]
+      ORDER BY [t].[Id], [t].[Id0]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[Name]
+      FROM [EventCategories_BCS242215] AS [e]
+      ORDER BY [e].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (21ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[Description], [t].[EndDate], [t].[EventCategoryId], [t].[Location], [t].[Name], [t].[Price], [t].[StartDate], [t].[Id0], [t].[Description0], [t].[Name0], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM (
+          SELECT TOP(1) [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id] AS [Id0], [e0].[Description] AS [Description0], [e0].[Name] AS [Name0]
+          FROM [Events_BCS242215] AS [e]
+          INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+          WHERE [e].[Id] = @__id_0
+      ) AS [t]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [t].[Id] = [e1].[EventId]
+      ORDER BY [t].[Id], [t].[Id0]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (7ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT CASE
+          WHEN EXISTS (
+              SELECT 1
+              FROM [Events_BCS242215] AS [e]
+              WHERE [e].[Id] = @__id_0) THEN CAST(1 AS bit)
+          ELSE CAST(0 AS bit)
+      END
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[@__eventId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[EventId], [e].[ImageUrl], [e].[IsThumbnail]
+      FROM [EventImages_BCS242215] AS [e]
+      WHERE [e].[EventId] = @__eventId_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (21ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)], CommandType='Text', CommandTimeout='30']
+      SET IMPLICIT_TRANSACTIONS OFF;
+      SET NOCOUNT ON;
+      UPDATE [EventImages_BCS242215] SET [IsThumbnail] = @p0
+      OUTPUT 1
+      WHERE [Id] = @p1;
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)], CommandType='Text', CommandTimeout='30']
+      SET IMPLICIT_TRANSACTIONS OFF;
+      SET NOCOUNT ON;
+      UPDATE [EventImages_BCS242215] SET [IsThumbnail] = @p0
+      OUTPUT 1
+      WHERE [Id] = @p1;
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[Description], [t].[EndDate], [t].[EventCategoryId], [t].[Location], [t].[Name], [t].[Price], [t].[StartDate], [t].[Id0], [t].[Description0], [t].[Name0], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM (
+          SELECT TOP(1) [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id] AS [Id0], [e0].[Description] AS [Description0], [e0].[Name] AS [Name0]
+          FROM [Events_BCS242215] AS [e]
+          INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+          WHERE [e].[Id] = @__id_0
+      ) AS [t]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [t].[Id] = [e1].[EventId]
+      ORDER BY [t].[Id], [t].[Id0]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT CASE
+          WHEN EXISTS (
+              SELECT 1
+              FROM [Events_BCS242215] AS [e]
+              WHERE [e].[Id] = @__id_0) THEN CAST(1 AS bit)
+          ELSE CAST(0 AS bit)
+      END
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[@__eventId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[EventId], [e].[ImageUrl], [e].[IsThumbnail]
+      FROM [EventImages_BCS242215] AS [e]
+      WHERE [e].[EventId] = @__eventId_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)], CommandType='Text', CommandTimeout='30']
+      SET IMPLICIT_TRANSACTIONS OFF;
+      SET NOCOUNT ON;
+      UPDATE [EventImages_BCS242215] SET [IsThumbnail] = @p0
+      OUTPUT 1
+      WHERE [Id] = @p1;
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)], CommandType='Text', CommandTimeout='30']
+      SET IMPLICIT_TRANSACTIONS OFF;
+      SET NOCOUNT ON;
+      UPDATE [EventImages_BCS242215] SET [IsThumbnail] = @p0
+      OUTPUT 1
+      WHERE [Id] = @p1;
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[Description], [t].[EndDate], [t].[EventCategoryId], [t].[Location], [t].[Name], [t].[Price], [t].[StartDate], [t].[Id0], [t].[Description0], [t].[Name0], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM (
+          SELECT TOP(1) [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id] AS [Id0], [e0].[Description] AS [Description0], [e0].[Name] AS [Name0]
+          FROM [Events_BCS242215] AS [e]
+          INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+          WHERE [e].[Id] = @__id_0
+      ) AS [t]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [t].[Id] = [e1].[EventId]
+      ORDER BY [t].[Id], [t].[Id0]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (12ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id], [e0].[Description], [e0].[Name], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM [Events_BCS242215] AS [e]
+      INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [e].[Id] = [e1].[EventId]
+      ORDER BY [e].[StartDate], [e].[Id], [e0].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[Name]
+      FROM [EventCategories_BCS242215] AS [e]
+      ORDER BY [e].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id], [e0].[Description], [e0].[Name], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM [Events_BCS242215] AS [e]
+      INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [e].[Id] = [e1].[EventId]
+      ORDER BY [e].[StartDate], [e].[Id], [e0].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[Name]
+      FROM [EventCategories_BCS242215] AS [e]
+      ORDER BY [e].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (12ms) [Parameters=[@__keyword_0_contains='?' (Size = 150), @__keyword_0_contains_1='?' (Size = 200)], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id], [e0].[Description], [e0].[Name], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM [Events_BCS242215] AS [e]
+      INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [e].[Id] = [e1].[EventId]
+      WHERE [e].[Name] LIKE @__keyword_0_contains ESCAPE N'\' OR [e].[Location] LIKE @__keyword_0_contains_1 ESCAPE N'\'
+      ORDER BY [e].[StartDate], [e].[Id], [e0].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[Name]
+      FROM [EventCategories_BCS242215] AS [e]
+      ORDER BY [e].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__keyword_0_contains='?' (Size = 150), @__keyword_0_contains_1='?' (Size = 200)], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id], [e0].[Description], [e0].[Name], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM [Events_BCS242215] AS [e]
+      INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [e].[Id] = [e1].[EventId]
+      WHERE [e].[Name] LIKE @__keyword_0_contains ESCAPE N'\' OR [e].[Location] LIKE @__keyword_0_contains_1 ESCAPE N'\'
+      ORDER BY [e].[StartDate], [e].[Id], [e0].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[Name]
+      FROM [EventCategories_BCS242215] AS [e]
+      ORDER BY [e].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__keyword_0_contains='?' (Size = 150), @__keyword_0_contains_1='?' (Size = 200)], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id], [e0].[Description], [e0].[Name], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM [Events_BCS242215] AS [e]
+      INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [e].[Id] = [e1].[EventId]
+      WHERE [e].[Name] LIKE @__keyword_0_contains ESCAPE N'\' OR [e].[Location] LIKE @__keyword_0_contains_1 ESCAPE N'\'
+      ORDER BY [e].[StartDate], [e].[Id], [e0].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[Name]
+      FROM [EventCategories_BCS242215] AS [e]
+      ORDER BY [e].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id], [e0].[Description], [e0].[Name], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM [Events_BCS242215] AS [e]
+      INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [e].[Id] = [e1].[EventId]
+      ORDER BY [e].[StartDate], [e].[Id], [e0].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[Name]
+      FROM [EventCategories_BCS242215] AS [e]
+      ORDER BY [e].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (12ms) [Parameters=[@__keyword_0_contains='?' (Size = 150), @__keyword_0_contains_1='?' (Size = 200)], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id], [e0].[Description], [e0].[Name], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM [Events_BCS242215] AS [e]
+      INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [e].[Id] = [e1].[EventId]
+      WHERE [e].[Name] LIKE @__keyword_0_contains ESCAPE N'\' OR [e].[Location] LIKE @__keyword_0_contains_1 ESCAPE N'\'
+      ORDER BY [e].[StartDate], [e].[Id], [e0].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[Name]
+      FROM [EventCategories_BCS242215] AS [e]
+      ORDER BY [e].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (7ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id], [e0].[Description], [e0].[Name], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM [Events_BCS242215] AS [e]
+      INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [e].[Id] = [e1].[EventId]
+      ORDER BY [e].[StartDate], [e].[Id], [e0].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[Name]
+      FROM [EventCategories_BCS242215] AS [e]
+      ORDER BY [e].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (5ms) [Parameters=[@__categoryId_Value_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id], [e0].[Description], [e0].[Name], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM [Events_BCS242215] AS [e]
+      INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [e].[Id] = [e1].[EventId]
+      WHERE [e].[EventCategoryId] = @__categoryId_Value_0
+      ORDER BY [e].[StartDate], [e].[Id], [e0].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[Name]
+      FROM [EventCategories_BCS242215] AS [e]
+      ORDER BY [e].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__categoryId_Value_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id], [e0].[Description], [e0].[Name], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM [Events_BCS242215] AS [e]
+      INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [e].[Id] = [e1].[EventId]
+      WHERE [e].[EventCategoryId] = @__categoryId_Value_0
+      ORDER BY [e].[StartDate], [e].[Id], [e0].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[Name]
+      FROM [EventCategories_BCS242215] AS [e]
+      ORDER BY [e].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__categoryId_Value_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id], [e0].[Description], [e0].[Name], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM [Events_BCS242215] AS [e]
+      INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [e].[Id] = [e1].[EventId]
+      WHERE [e].[EventCategoryId] = @__categoryId_Value_0
+      ORDER BY [e].[StartDate], [e].[Id], [e0].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[Name]
+      FROM [EventCategories_BCS242215] AS [e]
+      ORDER BY [e].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id], [e0].[Description], [e0].[Name], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM [Events_BCS242215] AS [e]
+      INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [e].[Id] = [e1].[EventId]
+      ORDER BY [e].[StartDate], [e].[Id], [e0].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[Name]
+      FROM [EventCategories_BCS242215] AS [e]
+      ORDER BY [e].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (22ms) [Parameters=[@__startDateFrom_Value_Date_0='?' (DbType = DateTime2), @__exclusiveEnd_1='?' (DbType = DateTime2)], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id], [e0].[Description], [e0].[Name], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM [Events_BCS242215] AS [e]
+      INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [e].[Id] = [e1].[EventId]
+      WHERE [e].[StartDate] >= @__startDateFrom_Value_Date_0 AND [e].[StartDate] < @__exclusiveEnd_1
+      ORDER BY [e].[StartDate], [e].[Id], [e0].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[Name]
+      FROM [EventCategories_BCS242215] AS [e]
+      ORDER BY [e].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__startDateFrom_Value_Date_0='?' (DbType = DateTime2), @__exclusiveEnd_1='?' (DbType = DateTime2)], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id], [e0].[Description], [e0].[Name], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM [Events_BCS242215] AS [e]
+      INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [e].[Id] = [e1].[EventId]
+      WHERE [e].[StartDate] >= @__startDateFrom_Value_Date_0 AND [e].[StartDate] < @__exclusiveEnd_1
+      ORDER BY [e].[StartDate], [e].[Id], [e0].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[Name]
+      FROM [EventCategories_BCS242215] AS [e]
+      ORDER BY [e].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id], [e0].[Description], [e0].[Name], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM [Events_BCS242215] AS [e]
+      INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [e].[Id] = [e1].[EventId]
+      ORDER BY [e].[StartDate], [e].[Id], [e0].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[Name]
+      FROM [EventCategories_BCS242215] AS [e]
+      ORDER BY [e].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id], [e0].[Description], [e0].[Name], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM [Events_BCS242215] AS [e]
+      INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [e].[Id] = [e1].[EventId]
+      ORDER BY [e].[StartDate], [e].[Id], [e0].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[Name]
+      FROM [EventCategories_BCS242215] AS [e]
+      ORDER BY [e].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id], [e0].[Description], [e0].[Name], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM [Events_BCS242215] AS [e]
+      INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [e].[Id] = [e1].[EventId]
+      ORDER BY [e].[Price], [e].[StartDate], [e].[Id], [e0].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[Name]
+      FROM [EventCategories_BCS242215] AS [e]
+      ORDER BY [e].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id], [e0].[Description], [e0].[Name], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM [Events_BCS242215] AS [e]
+      INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [e].[Id] = [e1].[EventId]
+      ORDER BY [e].[Price] DESC, [e].[StartDate], [e].[Id], [e0].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[Name]
+      FROM [EventCategories_BCS242215] AS [e]
+      ORDER BY [e].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id], [e0].[Description], [e0].[Name], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM [Events_BCS242215] AS [e]
+      INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [e].[Id] = [e1].[EventId]
+      ORDER BY [e].[StartDate], [e].[Id], [e0].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[Name]
+      FROM [EventCategories_BCS242215] AS [e]
+      ORDER BY [e].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (15ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id], [e0].[Description], [e0].[Name]
+      FROM [Events_BCS242215] AS [e]
+      INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+      WHERE [e].[Id] = @__id_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (4ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate]
+      FROM [Events_BCS242215] AS [e]
+      WHERE [e].[Id] = @__p_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (12ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[Description], [t].[EndDate], [t].[EventCategoryId], [t].[Location], [t].[Name], [t].[Price], [t].[StartDate], [t].[Id0], [t].[Description0], [t].[Name0], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM (
+          SELECT TOP(1) [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id] AS [Id0], [e0].[Description] AS [Description0], [e0].[Name] AS [Name0]
+          FROM [Events_BCS242215] AS [e]
+          INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+          WHERE [e].[Id] = @__id_0
+      ) AS [t]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [t].[Id] = [e1].[EventId]
+      ORDER BY [t].[Id], [t].[Id0]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id], [e0].[Description], [e0].[Name]
+      FROM [Events_BCS242215] AS [e]
+      INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+      WHERE [e].[Id] = @__id_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[Name]
+      FROM [EventCategories_BCS242215] AS [e]
+      ORDER BY [e].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (13ms) [Parameters=[@__categoryId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT CASE
+          WHEN EXISTS (
+              SELECT 1
+              FROM [EventCategories_BCS242215] AS [e]
+              WHERE [e].[Id] = @__categoryId_0) THEN CAST(1 AS bit)
+          ELSE CAST(0 AS bit)
+      END
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (8ms) [Parameters=[@__eventItem_Name_0='?' (Size = 150), @__eventItem_StartDate_1='?' (DbType = DateTime2)], CommandType='Text', CommandTimeout='30']
+      SELECT CASE
+          WHEN EXISTS (
+              SELECT 1
+              FROM [Events_BCS242215] AS [e]
+              WHERE [e].[Name] = @__eventItem_Name_0 AND [e].[StartDate] = @__eventItem_StartDate_1) THEN CAST(1 AS bit)
+          ELSE CAST(0 AS bit)
+      END
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (22ms) [Parameters=[@p0='?' (Size = 1000), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Int32), @p3='?' (Size = 200), @p4='?' (Size = 150), @p5='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p6='?' (DbType = DateTime2)], CommandType='Text', CommandTimeout='30']
+      SET IMPLICIT_TRANSACTIONS OFF;
+      SET NOCOUNT ON;
+      INSERT INTO [Events_BCS242215] ([Description], [EndDate], [EventCategoryId], [Location], [Name], [Price], [StartDate])
+      OUTPUT INSERTED.[Id]
+      VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id], [e0].[Description], [e0].[Name], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM [Events_BCS242215] AS [e]
+      INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [e].[Id] = [e1].[EventId]
+      ORDER BY [e].[StartDate], [e].[Id], [e0].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[Name]
+      FROM [EventCategories_BCS242215] AS [e]
+      ORDER BY [e].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (9ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[Description], [t].[EndDate], [t].[EventCategoryId], [t].[Location], [t].[Name], [t].[Price], [t].[StartDate], [t].[Id0], [t].[Description0], [t].[Name0], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM (
+          SELECT TOP(1) [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id] AS [Id0], [e0].[Description] AS [Description0], [e0].[Name] AS [Name0]
+          FROM [Events_BCS242215] AS [e]
+          INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+          WHERE [e].[Id] = @__id_0
+      ) AS [t]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [t].[Id] = [e1].[EventId]
+      ORDER BY [t].[Id], [t].[Id0]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate]
+      FROM [Events_BCS242215] AS [e]
+      WHERE [e].[Id] = @__p_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate]
+      FROM [Events_BCS242215] AS [e]
+      WHERE [e].[Id] = @__p_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (7ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 1000), @p2='?' (DbType = Boolean)], CommandType='Text', CommandTimeout='30']
+      SET IMPLICIT_TRANSACTIONS OFF;
+      SET NOCOUNT ON;
+      INSERT INTO [EventImages_BCS242215] ([EventId], [ImageUrl], [IsThumbnail])
+      OUTPUT INSERTED.[Id]
+      VALUES (@p0, @p1, @p2);
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[Description], [t].[EndDate], [t].[EventCategoryId], [t].[Location], [t].[Name], [t].[Price], [t].[StartDate], [t].[Id0], [t].[Description0], [t].[Name0], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM (
+          SELECT TOP(1) [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id] AS [Id0], [e0].[Description] AS [Description0], [e0].[Name] AS [Name0]
+          FROM [Events_BCS242215] AS [e]
+          INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+          WHERE [e].[Id] = @__id_0
+      ) AS [t]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [t].[Id] = [e1].[EventId]
+      ORDER BY [t].[Id], [t].[Id0]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT CASE
+          WHEN EXISTS (
+              SELECT 1
+              FROM [Events_BCS242215] AS [e]
+              WHERE [e].[Id] = @__id_0) THEN CAST(1 AS bit)
+          ELSE CAST(0 AS bit)
+      END
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@__eventId_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[EventId], [e].[ImageUrl], [e].[IsThumbnail]
+      FROM [EventImages_BCS242215] AS [e]
+      WHERE [e].[EventId] = @__eventId_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (22ms) [Parameters=[@p1='?' (DbType = Int32), @p0='?' (DbType = Boolean)], CommandType='Text', CommandTimeout='30']
+      SET IMPLICIT_TRANSACTIONS OFF;
+      SET NOCOUNT ON;
+      UPDATE [EventImages_BCS242215] SET [IsThumbnail] = @p0
+      OUTPUT 1
+      WHERE [Id] = @p1;
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[Description], [t].[EndDate], [t].[EventCategoryId], [t].[Location], [t].[Name], [t].[Price], [t].[StartDate], [t].[Id0], [t].[Description0], [t].[Name0], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM (
+          SELECT TOP(1) [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id] AS [Id0], [e0].[Description] AS [Description0], [e0].[Name] AS [Name0]
+          FROM [Events_BCS242215] AS [e]
+          INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+          WHERE [e].[Id] = @__id_0
+      ) AS [t]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [t].[Id] = [e1].[EventId]
+      ORDER BY [t].[Id], [t].[Id0]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id], [e0].[Description], [e0].[Name], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM [Events_BCS242215] AS [e]
+      INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [e].[Id] = [e1].[EventId]
+      ORDER BY [e].[StartDate], [e].[Id], [e0].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[Name]
+      FROM [EventCategories_BCS242215] AS [e]
+      ORDER BY [e].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (14ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[Description], [t].[EndDate], [t].[EventCategoryId], [t].[Location], [t].[Name], [t].[Price], [t].[StartDate], [t].[Id0], [t].[Description0], [t].[Name0], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM (
+          SELECT TOP(1) [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id] AS [Id0], [e0].[Description] AS [Description0], [e0].[Name] AS [Name0]
+          FROM [Events_BCS242215] AS [e]
+          INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+          WHERE [e].[Id] = @__id_0
+      ) AS [t]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [t].[Id] = [e1].[EventId]
+      ORDER BY [t].[Id], [t].[Id0]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id], [e0].[Description], [e0].[Name], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM [Events_BCS242215] AS [e]
+      INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [e].[Id] = [e1].[EventId]
+      ORDER BY [e].[StartDate], [e].[Id], [e0].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[Name]
+      FROM [EventCategories_BCS242215] AS [e]
+      ORDER BY [e].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (8ms) [Parameters=[@__categoryId_Value_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id], [e0].[Description], [e0].[Name], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM [Events_BCS242215] AS [e]
+      INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [e].[Id] = [e1].[EventId]
+      WHERE [e].[EventCategoryId] = @__categoryId_Value_0
+      ORDER BY [e].[StartDate], [e].[Id], [e0].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[Name]
+      FROM [EventCategories_BCS242215] AS [e]
+      ORDER BY [e].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@__categoryId_Value_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id], [e0].[Description], [e0].[Name], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM [Events_BCS242215] AS [e]
+      INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [e].[Id] = [e1].[EventId]
+      WHERE [e].[EventCategoryId] = @__categoryId_Value_0
+      ORDER BY [e].[StartDate], [e].[Id], [e0].[Id]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (12ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Description], [e].[Name]
+      FROM [EventCategories_BCS242215] AS [e]
+      ORDER BY [e].[Name]
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (6ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT TOP(1) [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id], [e0].[Description], [e0].[Name]
+      FROM [Events_BCS242215] AS [e]
+      INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+      WHERE [e].[Id] = @__id_0
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (17ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+      SELECT [t].[Id], [t].[Description], [t].[EndDate], [t].[EventCategoryId], [t].[Location], [t].[Name], [t].[Price], [t].[StartDate], [t].[Id0], [t].[Description0], [t].[Name0], [e1].[Id], [e1].[EventId], [e1].[ImageUrl], [e1].[IsThumbnail]
+      FROM (
+          SELECT TOP(1) [e].[Id], [e].[Description], [e].[EndDate], [e].[EventCategoryId], [e].[Location], [e].[Name], [e].[Price], [e].[StartDate], [e0].[Id] AS [Id0], [e0].[Description] AS [Description0], [e0].[Name] AS [Name0]
+          FROM [Events_BCS242215] AS [e]
+          INNER JOIN [EventCategories_BCS242215] AS [e0] ON [e].[EventCategoryId] = [e0].[Id]
+          WHERE [e].[Id] = @__id_0
+      ) AS [t]
+      LEFT JOIN [EventImages_BCS242215] AS [e1] ON [t].[Id] = [e1].[EventId]
+      ORDER BY [t].[Id], [t].[Id0]
